@@ -5,17 +5,15 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/profe-ajedrez/el_ratio/"
-
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-var l *rater.LeakybuckerLimiter
+var l *el_ratio.LeakybuckerLimiter
 
 func main() {
 
-	l = rater.NewLeakyBucketLimiter(1, 5*time.Second)
+	l = el_ratio.NewLeakyBucketLimiter(1, 5*time.Second)
 
 	r := chi.NewRouter()
 	r.Use(Limiter)
